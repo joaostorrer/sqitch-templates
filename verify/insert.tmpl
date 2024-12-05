@@ -1,0 +1,16 @@
+-- Verify [% project %]:[% change %] on [% engine %]
+
+begin;
+
+do $$ 
+begin
+    if not exists (
+        select 1 
+        from   [% change.split('/')[-1] %]
+        where  -- = --
+    ) then
+        raise exception 'O dado não foi inserido na tabela %.', '[% change.split('/')[-1] %]';
+    end if;
+end $$;
+
+rollback;

@@ -1,0 +1,19 @@
+-- Verify [% project %]:[% change %] on [% engine %]
+
+begin;
+
+do $$
+declare
+    v_function_definition text;
+begin
+    select pg_get_functiondef(oid)
+    into   v_function_definition
+    from   pg_proc
+    where  proname = '[% change.split('/')[-1] %]';
+
+    if v_function_definition not like '%--%' then
+        raise exception 'A nova versão da function [% change.split('/')[-1] %] não foi encontrada.';
+    end if;
+end $$;
+
+rollback;

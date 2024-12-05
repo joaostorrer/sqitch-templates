@@ -1,0 +1,7 @@
+-- Revert [% project %]:[% change %] from [% engine %]
+
+begin;
+
+delete from table [% change.split('/')[-1] %] where -- = --;
+
+commit;

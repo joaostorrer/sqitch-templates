@@ -1,0 +1,8 @@
+-- Verify [% project %]:[% change %] on [% engine %]
+
+begin;
+
+select [% column.join(',\n       ') %]
+from   [% change.split('/')[-1] %];
+
+rollback;

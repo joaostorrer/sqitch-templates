@@ -1,0 +1,7 @@
+-- Revert [% project %]:[% change %] from [% engine %]
+
+begin;
+
+insert into table [% change.split('/')[-1] %] values (--);
+
+commit;

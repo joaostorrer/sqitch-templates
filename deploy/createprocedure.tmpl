@@ -1,0 +1,20 @@
+-- Deploy [% change %]
+[% forach item in requires -%]
+-- requires: [% item %]
+[% end -%]
+[% forach item in conflicts -%]
+-- conflicts: [% item %]
+[% end -%]
+
+begin;
+
+create or replace procedure [% change.split('/')[-1] %]()
+language plpgsql
+as $$
+declare
+
+begin
+
+end; $$;
+
+commit;

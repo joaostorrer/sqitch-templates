@@ -1,0 +1,20 @@
+-- Verify [% project %]:[% change %] on [% engine %]
+
+begin;
+
+do $$
+declare
+    v_data_type text;
+begin
+    select data_type
+    into   v_data_type
+    from   information_schema.columns
+    where  table_name = '[% change.split('/')[-1] %]'
+    and    column_name = '--';
+
+    if v_data_type != '--' then
+        raise exception 'A coluna -- não foi alterada com sucesso para --.';
+    end if;
+end $$;
+
+rollback;

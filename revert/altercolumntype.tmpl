@@ -1,0 +1,7 @@
+-- Revert [% project %]:[% change %] from [% engine %]
+
+begin;
+
+alter table [% change.split('/')[-1] %] alter column -- type -- using --;
+
+commit;

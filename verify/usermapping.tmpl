@@ -1,0 +1,16 @@
+-- Verify [% project %]:[% change %] on [% engine %]
+
+begin;
+
+do $$ 
+begin
+    if not exists (
+        select 1
+        from   pg_catalog.pg_user_mappings
+        where  srvname = '[% change.split('/')[-1] %]'
+    ) then
+        raise exception 'Não foi criado o user mapping!';
+    end if;
+end $$;
+
+rollback;

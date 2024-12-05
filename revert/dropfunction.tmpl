@@ -1,0 +1,15 @@
+-- Revert [% project %]:[% change %] from [% engine %]
+
+begin;
+
+create or replace function [% change.split('/')[-1] %]()
+returns --
+language plpgsql
+as $$
+declare
+
+begin
+
+end; $$;
+
+commit;

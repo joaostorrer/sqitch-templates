@@ -1,0 +1,18 @@
+-- Deploy [% change %]
+[% forach item in requires -%]
+-- requires: [% item %]
+[% end -%]
+[% forach item in conflicts -%]
+-- conflicts: [% item %]
+[% end -%]
+
+begin;
+
+create table [% change.split('/')[-1] %] (
+    [% forach col in column -%]
+        [% col %] [% type.item( loop.index ) %] not null[% loop.last ? '' : ',' %]
+    [% end -%]
+    );
+);
+
+commit;

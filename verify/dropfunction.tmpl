@@ -1,0 +1,7 @@
+-- Verify [% project %]:[% change %] on [% engine %]
+
+begin;
+
+select not has_function_privilege('[% change.split('/')[-1] %]()', 'execute');
+
+rollback;

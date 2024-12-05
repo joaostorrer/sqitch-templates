@@ -1,0 +1,23 @@
+-- Deploy [% change %]
+[% forach item in requires -%]
+-- requires: [% item %]
+[% end -%]
+[% forach item in conflicts -%]
+-- conflicts: [% item %]
+[% end -%]
+
+begin;
+
+drop function [% change.split('/')[-1] %];
+
+create or replace function [% change.split('/')[-1] %]()
+returns --
+language plpgsql
+as $$
+declare
+
+begin
+
+end; $$;
+
+commit;

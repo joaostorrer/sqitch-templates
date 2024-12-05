@@ -1,0 +1,7 @@
+-- Revert [% project %]:[% change %] from [% engine %]
+
+begin;
+
+drop function [% change.split('/')[-1] %];
+
+commit;
